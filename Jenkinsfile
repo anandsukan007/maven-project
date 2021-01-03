@@ -15,7 +15,7 @@ pipeline {
             }
         }
         stage("Deply-dev") {
-            when { anyof { branch 'master'} }
+            when { anyOf { branch 'master' } }
             steps{
             sshagent(['slave_dev']) {
        sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ananddevops2021@10.128.0.7:/opt/apache-tomcat-8.5.61/webapps"
