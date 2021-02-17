@@ -15,7 +15,14 @@ pipeline {
             }
         }
         stage("Deply-dev") {
+
+            //when { anyOf { branch "dev" } }
+            when {
+            expression { env.BRANCH_NAME == 'dev' }
+        }
+
             agent { label 'slave_kubemaster' }
+
             steps{
             sh "scp -o StrictHostKeyChecking=no webapp/target/webapp.war ananddevops2021@10.128.0.7:/opt/apache-tomcat-8.5.61/webapps"
 }
